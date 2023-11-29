@@ -1,4 +1,5 @@
 import CardCEP from "@/components/card-cep";
+import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <div className="flex items-center justify-center flex-grow">
         <CardCEP />
       </div>
+      <Footer />
     </main>
   );
 }
