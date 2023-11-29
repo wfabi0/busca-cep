@@ -105,6 +105,7 @@ export default function CardCEP() {
                       placeholder="00000-000"
                       {...field}
                       autoComplete="off"
+                      inputMode="numeric"
                       onChange={(e) => {
                         const formattedValue = e.target.value.replace(
                           /\D/g,
