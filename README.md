@@ -1,4 +1,4 @@
-# 🔎 [Busca CEP](https://busca-cep.vercel.app/)
+# 🔎 [Busca CEP](https://obusca-cep-brasil.vercel.app/)
 
 <div align="center" style="margin-bottom: 20px;">
     <img src="public/busca_cep_2.png" alt="Busca CEP" width="70%" height="auto">
