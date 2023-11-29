@@ -168,7 +168,7 @@ export default function CardCEP() {
                           Endereço encontrado:
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="grid grid-cols-2 items-center gap-4">
+                      <div className="grid md:grid-cols-2 sm:grid-cols-1 items-center gap-4">
                         <div className="grid flex-1 gap-2">
                           <Label htmlFor="state">Estado</Label>
                           <Input
