@@ -2,18 +2,11 @@
 
 import { FaRegMoon, FaSun } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { changeCookie, getCookie } from "@/modules/theme/theme-server";
+import { useTheme } from "next-themes";
 
 export default function ThemeButton() {
   const [effect, setEffect] = useState(false);
-  const [theme, setTheme] = useState<string>("light");
-  useEffect(() => {
-    const get = async () => {
-      const cookies = await getCookie();
-      setTheme(cookies as string);
-    };
-    get();
-  }, []);
+  const { setTheme, theme } = useTheme();
   return (
     <div className="flex justify-end items-center p-4 transition-all">
       <button
@@ -22,8 +15,7 @@ export default function ThemeButton() {
         }`}
         onClick={async () => {
           setEffect(true);
-          const callback = await changeCookie();
-          setTheme(callback as string);
+          setTheme(theme === "dark" ? "light" : "dark");
         }}
         onAnimationEnd={() => {
           setEffect(false);

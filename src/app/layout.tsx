@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-import { getCookie } from "@/modules/theme/theme-server";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +15,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookies = await getCookie();
   return (
-    <html lang="en" className={cookies === "dark" ? "dark" : ""}>
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="transition-colors duration-200" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
