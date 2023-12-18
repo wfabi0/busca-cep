@@ -6,7 +6,15 @@ import { useTheme } from "next-themes";
 
 export default function ThemeButton() {
   const [effect, setEffect] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { setTheme, theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div className="flex justify-end items-center p-4 transition-all">
       <button
