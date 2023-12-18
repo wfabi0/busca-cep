@@ -32,6 +32,13 @@ import { Label } from "./ui/label";
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { States } from "@/utils/states";
+import { toast } from "./ui/use-toast";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 const formSchema = z.object({
   cep: z
@@ -42,12 +49,10 @@ const formSchema = z.object({
 });
 
 async function getCep(str: string) {
-  const resp = await fetch(
-    "https://brasilapi.com.br/api/cep/v1/" + str.replace("-", ""),
-    {
-      method: "GET",
-    }
-  );
+  const API_URL = "https://brasilapi.com.br/api";
+  const resp = await fetch(API_URL + "/cep/v1/" + str.replace("-", ""), {
+    method: "GET",
+  });
   return await resp.json();
 }
 
@@ -77,6 +82,11 @@ export default function CardCEP() {
       let textoParaCopiar = States[arr[0]];
       if (arr.length > 1) textoParaCopiar += ", " + arr.slice(1).join(", ");
       navigator.clipboard.writeText(textoParaCopiar);
+      return toast({
+        title: "Endereço copiado com sucesso.",
+        description: textoParaCopiar,
+        variant: "success",
+      });
     }
   };
 
@@ -153,16 +163,25 @@ export default function CardCEP() {
                       <DialogHeader>
                         <DialogTitle>
                           CEP Encontrado
-                          <Button
-                            type="submit"
-                            size="sm"
-                            className="p-3 mx-2"
-                            onClick={handleCopy}
-                            title="Copiar endereço"
-                          >
-                            <span className="sr-only">Copy</span>
-                            <IoCopyOutline className="h-4 w-4" />
-                          </Button>
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <Button
+                                  type="submit"
+                                  size="sm"
+                                  className="p-3 mx-2"
+                                  onClick={handleCopy}
+                                  // title="Copiar endereço"
+                                >
+                                  <span className="sr-only">Copy</span>
+                                  <IoCopyOutline className="h-4 w-4" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Copiar endereço.</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </DialogTitle>
                         <DialogDescription>
                           Endereço encontrado:
