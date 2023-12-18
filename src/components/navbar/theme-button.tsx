@@ -18,7 +18,7 @@ export default function ThemeButton() {
   return (
     <div className="flex justify-end items-center p-4 transition-all">
       <button
-        className={`bg-zinc-400 bg-opacity-30 border-2 rounded-full p-2 group ${
+        className={`bg-zinc-400 bg-opacity-30 border-2 rounded-full p-2 group focus:outline-none focus:shadow-none ${
           effect && "animate-wiggle"
         }`}
         onClick={async () => {

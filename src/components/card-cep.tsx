@@ -147,7 +147,7 @@ export default function CardCEP() {
               }}
             >
               <DialogTrigger asChild>
-                <Button type="submit">Procurar</Button>
+                <Button className="focus:outline-none focus:shadow-none" type="submit">Procurar</Button>
               </DialogTrigger>
               {
                 <DialogContent>
@@ -169,9 +169,8 @@ export default function CardCEP() {
                                 <Button
                                   type="submit"
                                   size="sm"
-                                  className="p-3 mx-2"
+                                  className="p-3 mx-2 focus:outline-none focus:shadow-none"
                                   onClick={handleCopy}
-                                  // title="Copiar endereço"
                                 >
                                   <span className="sr-only">Copy</span>
                                   <IoCopyOutline className="h-4 w-4" />
